@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="diamondChildren">
+        <createTable tableName="ANSWER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ANSWER"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ANSWER" type="VARCHAR(255)"/>
+            <column name="ANSWER2" type="VARCHAR(255)"/>
+            <column name="ANSWER3" type="VARCHAR(255)"/>
+            <column name="ANSWER4" type="VARCHAR(255)"/>
+            <column name="ANSWER5" type="VARCHAR(255)"/>
+            <column name="QUESTION_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="diamondChildren">
+        <createTable tableName="POLL">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POLL"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_POLL" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STOP_POLL" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="diamondChildren">
+        <createTable tableName="QUESTION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_QUESTION"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POLL_ID" type="UUID"/>
+            <column name="QUESTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="diamondChildren">
+        <createIndex indexName="IDX_ANSWER_QUESTION" tableName="ANSWER">
+            <column name="QUESTION_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="QUESTION_ID" baseTableName="ANSWER"
+                                 constraintName="FK_ANSWER_ON_QUESTION" referencedColumnNames="ID"
+                                 referencedTableName="QUESTION"/>
+    </changeSet>
+    <changeSet id="5" author="diamondChildren">
+        <createIndex indexName="IDX_QUESTION_POLL" tableName="QUESTION">
+            <column name="POLL_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="POLL_ID" baseTableName="QUESTION" constraintName="FK_QUESTION_ON_POLL"
+                                 referencedColumnNames="ID" referencedTableName="POLL"/>
+    </changeSet>
+</databaseChangeLog>

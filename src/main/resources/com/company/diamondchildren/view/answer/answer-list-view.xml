@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://answerListView.title"
+      focusComponent="answersDataGrid">
+    <data readOnly="true">
+        <collection id="answersDc"
+                    class="com.company.diamondchildren.entity.Answer">
+            <fetchPlan extends="_base">
+                <property name="question" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="answersDl">
+                <query>
+                    <![CDATA[select e from Answer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="answersDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="answersDataGrid.create"/>
+            <button id="editBtn" action="answersDataGrid.edit"/>
+            <button id="removeBtn" action="answersDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="answersDl"/>
+        </hbox>
+        <dataGrid id="answersDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="answersDc">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="answer"/>
+                <column property="answer2"/>
+                <column property="answer3"/>
+                <column property="answer4"/>
+                <column property="answer5"/>
+                <column property="question"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
