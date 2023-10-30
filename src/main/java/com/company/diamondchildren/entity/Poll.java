@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -21,6 +22,9 @@ public class Poll {
     @Version
     private Integer version;
 
+    @OneToMany(mappedBy = "poll")
+    private List<Question> poll;
+
     @Column(name = "START_POLL", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull
@@ -30,6 +34,14 @@ public class Poll {
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date stop_poll;
+
+    public List<Question> getPoll() {
+        return poll;
+    }
+
+    public void setPoll(List<Question> poll) {
+        this.poll = poll;
+    }
 
     public Date getStop_poll() {
         return stop_poll;
