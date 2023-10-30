@@ -3,6 +3,9 @@
 
     <menu id="application" title="msg://com.company.diamondchildren/menu.application.title" opened="true">
         <item view="User.list" title="msg://com.company.diamondchildren.view.user/UserListView.title"/>
+        <item view="Poll.list" title="msg://com.company.diamondchildren.view.poll/pollListView.title"/>
+        <item view="Question.list" title="msg://com.company.diamondchildren.view.question/questionListView.title"/>
+        <item view="Answer.list" title="msg://com.company.diamondchildren.view.answer/answerListView.title"/>
     </menu>
 
 </menu-config>
