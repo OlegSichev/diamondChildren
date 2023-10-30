@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
-    <menu id="application" title="msg://com.company.diamondchildren/menu.application.title" opened="true">
+    <menu opened="true" id="application" title="msg://com.company.diamondchildren/menu.application.title">
+        <item view="PollGo" title="msg://com.company.diamondchildren.view.pollgo/pollGo.title"/>
         <item view="User.list" title="msg://com.company.diamondchildren.view.user/UserListView.title"/>
         <item view="Poll.list" title="msg://com.company.diamondchildren.view.poll/pollListView.title"/>
         <item view="Question.list" title="msg://com.company.diamondchildren.view.question/questionListView.title"/>
         <item view="Answer.list" title="msg://com.company.diamondchildren.view.answer/answerListView.title"/>
     </menu>
-
 </menu-config>
