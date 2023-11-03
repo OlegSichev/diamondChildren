@@ -21,6 +21,7 @@ public class Answer {
 
     @Column(name = "ANSWER")
     private String answer;
+
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @JoinColumn(name = "QUESTION_ID")
     @ManyToOne(fetch = FetchType.LAZY)

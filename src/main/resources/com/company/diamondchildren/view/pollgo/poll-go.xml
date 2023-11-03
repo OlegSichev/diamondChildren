@@ -12,5 +12,7 @@
         </collection>
     </data>
     <layout>
+        <listBox itemsContainer="pollsDc"/><listBox>
+    </listBox>
     </layout>
 </view>
